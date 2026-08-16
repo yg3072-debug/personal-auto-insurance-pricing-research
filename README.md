@@ -35,12 +35,14 @@ The data were split by renewal-date blocks rather than randomly. The final test 
 
 ## SERFF manual extension
 
-The pilot manual review uses the Progressive Select Insurance Company Maryland Private Passenger Automobile Program materials supplied for this study. The filed rate order shows a two-stage structure:
+The current manual panel covers Maryland filings for **Allstate Indemnity Company** and **Allstate North American Insurance Company**, rather than Progressive:
 
-1. Construct a **Household Risk Factor** from developed driver factors.
-2. Apply vehicle- and coverage-level components, including base rate, tier, limits and deductibles, garaging location, vehicle symbols and attributes, vehicle age, annual miles, prior-insurance and quote timing variables, discounts, surcharges, and expense components.
+- Allstate Indemnity filing **R59063**: a 51-step RP-2A premium calculation effective September 4, 2026.
+- Allstate North American filings **R57301, R58046, R59113, and R60248**: rate and rule materials spanning 2024-2026, with a roughly 69-71-line architecture.
 
-The repository does not redistribute insurer manuals. It records document titles, factor categories, and analytical notes with links to the public SERFF access system. See [`docs/serff_manual_analysis.md`](docs/serff_manual_analysis.md).
+The analysis does more than list factors. It inventories effective pages and overrides, converts the premium-calculation order into a directed graph, links each node to its rule and lookup table, records coverage applicability and additive versus multiplicative treatment, compares versions, and validates standardized profiles by hand or against authorized quotes. Representative rating dimensions include territory and limits; household, insurance-score, rating, accident, and violation tiers; payment and channel; telematics and driving behavior; vehicle characteristics, mileage, history, and technology; interactions, mitigation, and fixed expense.
+
+The repository does not redistribute insurer manuals. It records document inventory, source-page references, analytical workflow, and a machine-readable example with links to public SERFF access. See [`docs/serff_manual_analysis.md`](docs/serff_manual_analysis.md) and [`docs/manual_factor_schema.yaml`](docs/manual_factor_schema.yaml).
 
 ## Important methodological boundary
 
