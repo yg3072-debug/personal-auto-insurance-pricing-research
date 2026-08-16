@@ -14,10 +14,10 @@ How can policy data, standardized quote observations, and public insurer rate ma
 
 ## Workstream 2: manual-to-engine translation
 
-- expand beyond the Progressive Maryland pilot to a small carrier/state panel;
-- encode factor tables, rule conditions, coverage applicability, and calculation order;
-- version every component by effective date and source;
-- test tariff reconstruction against authorized quote examples.
+- complete and validate the 51-step Allstate Indemnity R59063 calculation graph;
+- encode selected Allstate North American R57301/R58046/R59113/R60248 factor tables, rules, coverage applicability, and calculation order;
+- compare underwriting-company and effective-date versions before expanding to a cross-carrier panel;
+- test scenario-based tariff reconstruction against hand calculations and authorized quote examples.
 
 ## Workstream 3: standardized quote panel
 
