@@ -5,8 +5,12 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 
-# Policy-level data are intentionally excluded.
-data/raw/
+# Keep unreviewed local data out of version control. The two files below are
+# the documented CC BY 4.0 source files used in this project.
+data/raw/*
+!data/raw/motor_vehicle_insurance_part_*.csv.gz
+!data/raw/descriptive_of_variables.xlsx
+!data/raw/SHA256SUMS
 data/private/
 *.parquet
 *.feather

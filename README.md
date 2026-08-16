@@ -55,7 +55,7 @@ This distinction is deliberate:
 
 ```text
 .
-├── data/                  # Data-access and privacy notes; no raw policy data
+├── data/                  # Public source data, provenance, and license notes
 ├── docs/                  # Data dictionary, methods, SERFF analysis, roadmap
 ├── notebooks/             # Cleaned source notebook; outputs removed
 ├── reports/               # Completed research report
@@ -66,10 +66,9 @@ This distinction is deliberate:
 
 ## Reproduce the workflow
 
-The original policy-level data are not included because they contain exact dates and other quasi-identifiers, and no redistribution license was established.
+The original 105,555-row dataset is included as five lossless gzip-compressed row parts under `data/raw/`. It is publicly distributed by openICPSR and licensed under CC BY 4.0. The notebook discovers and concatenates the parts automatically.
 
-1. Obtain an authorized copy of the dataset and save it outside version control.
-2. Create a virtual environment and install dependencies:
+1. Create a virtual environment and install dependencies:
 
    ```bash
    python -m venv .venv
@@ -77,9 +76,18 @@ The original policy-level data are not included because they contain exact dates
    pip install -r requirements.txt
    ```
 
-3. Place the CSV at `data/raw/motor_vehicle_insurance.csv` or change the path in the notebook.
-4. Run the notebook from top to bottom. Full tuning is computationally expensive; use fixed parameters for a portfolio review and reserve full chronological search for formal replication.
-5. Run tests with `pytest -q`.
+2. Run the notebook from top to bottom. Full tuning is computationally expensive; use fixed parameters for a portfolio review and reserve full chronological search for formal replication.
+3. Run tests with `pytest -q`.
+
+## Data provenance and attribution
+
+The empirical analysis uses the public **Dataset of an actual motor vehicle insurance portfolio**, which contains 105,555 policy transactions from a Spanish insurer covering November 2015 through December 2018.
+
+> Lledó, Josep, and Pavía, Jose M. (2023). *Dataset of an actual motor vehicle insurance portfolio* (V1). Inter-university Consortium for Political and Social Research. https://doi.org/10.3886/E193182V1
+
+- [openICPSR project page](https://www.openicpsr.org/openicpsr/project/193182/version/V1/view)
+- License: [Creative Commons Attribution 4.0 International](https://creativecommons.org/licenses/by/4.0/)
+- Local integrity record: [`data/DATA_LICENSE.md`](data/DATA_LICENSE.md)
 
 ## Research roadmap
 
@@ -96,6 +104,7 @@ See [`docs/research_roadmap.md`](docs/research_roadmap.md) for scope and evaluat
 
 ## Sources and use
 
+- [Lledó and Pavía motor-insurance dataset, openICPSR](https://doi.org/10.3886/E193182V1)
 - [SERFF Filing Access](https://www.serff.com/serff_filing_access.htm)
 - [SERFF Filing Access - Maryland](https://filingaccess.serff.com/sfa/home/MD)
 

@@ -20,7 +20,13 @@ def main(source: str, destination: str) -> None:
         source_text = "".join(cell.get("source", []))
         source_text = source_text.replace(
             'pd.read_csv("D:/JNP/Motor vehicle insurance data.csv")',
-            'pd.read_csv("../data/raw/motor_vehicle_insurance.csv")',
+            'from pathlib import Path\n\n'
+            'pd.concat(\n'
+            '    (pd.read_csv(path) for path in sorted(\n'
+            '        Path("../data/raw").glob("motor_vehicle_insurance_part_*.csv.gz")\n'
+            '    )),\n'
+            '    ignore_index=True,\n'
+            ')',
         )
         cell["source"] = source_text.splitlines(keepends=True)
 

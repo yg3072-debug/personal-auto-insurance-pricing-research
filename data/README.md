@@ -1,20 +1,29 @@
-# Data access and privacy
+# Data source, access, and responsible use
 
-The completed study used 105,555 annual policy observations from a Spanish motor insurer. The raw file is not included in this public repository.
+The completed study used 105,555 annual policy observations from a Spanish motor insurer. The original public dataset and its variable-description workbook are included in `data/raw/` so the empirical workflow can be reproduced directly.
 
-## Why the raw data are excluded
+## Public source
 
-Although the dataset does not contain names, it includes exact dates of birth, driving-licence dates, renewal dates, policy IDs, vehicle characteristics, and insurance outcomes. These fields can function as quasi-identifiers when combined. A public redistribution license was also not established.
+Lledó, Josep, and Pavía, Jose M. (2023). *Dataset of an actual motor vehicle insurance portfolio* (V1). Inter-university Consortium for Political and Social Research. https://doi.org/10.3886/E193182V1
 
-## Expected local path
+- Project page: https://www.openicpsr.org/openicpsr/project/193182/version/V1/view
+- Geographic coverage: Spain
+- Observation period: November 2015 to December 2018
+- Unit of observation: policy transaction
+- License: Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-Place an authorized local copy at:
+## Included files
 
 ```text
-data/raw/motor_vehicle_insurance.csv
+data/raw/motor_vehicle_insurance_part_01.csv.gz
+data/raw/motor_vehicle_insurance_part_02.csv.gz
+data/raw/motor_vehicle_insurance_part_03.csv.gz
+data/raw/motor_vehicle_insurance_part_04.csv.gz
+data/raw/motor_vehicle_insurance_part_05.csv.gz
+data/raw/descriptive_of_variables.xlsx
 ```
 
-The `.gitignore` file prevents this directory from being committed.
+Together, the five compressed CSV parts contain all 105,555 data rows and 30 columns. They are split losslessly by row and each part repeats the original header. The notebook loads and concatenates them automatically. See [`DATA_LICENSE.md`](DATA_LICENSE.md) for attribution, file hashes, and license details.
 
 ## Expected schema
 
@@ -30,4 +39,6 @@ See [`../docs/data_dictionary.md`](../docs/data_dictionary.md) for field definit
 
 ## Reproducibility boundary
 
-The report and repository document verified aggregate counts and model metrics. Reproducing those results requires the authorized source file. Tests in this repository use synthetic records only and do not recreate or approximate any individual policyholder.
+The dataset is publicly licensed, but it contains exact dates and policy-level administrative fields. Users should not attempt to identify policyholders, link records to external personal information, or use the data to make decisions about identifiable individuals. The ID field is used for grouping and audit rather than as a model feature.
+
+Tests in this repository continue to use synthetic records so that unit tests remain fast and do not depend on individual source observations.

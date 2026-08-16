@@ -115,10 +115,19 @@ class DateBlockSplit:
 
 
 def load_policy_data(path: str | Path) -> pd.DataFrame:
-    """Load a locally authorized CSV and normalize accidental single-column reads."""
+    """Load one source CSV/gzip file or the repository's directory of parts."""
 
     path = Path(path)
-    frame = pd.read_csv(path, low_memory=False)
+    if path.is_dir():
+        parts = sorted(path.glob("motor_vehicle_insurance_part_*.csv.gz"))
+        if not parts:
+            raise FileNotFoundError(f"No public dataset parts found in {path}")
+        frame = pd.concat(
+            (pd.read_csv(part, low_memory=False) for part in parts),
+            ignore_index=True,
+        )
+    else:
+        frame = pd.read_csv(path, low_memory=False)
     if frame.shape[1] == 1 and ";" in frame.columns[0]:
         frame = pd.read_csv(path, sep=";", low_memory=False)
     return frame
