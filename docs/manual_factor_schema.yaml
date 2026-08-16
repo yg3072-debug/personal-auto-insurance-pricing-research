@@ -1,0 +1,94 @@
+schema_version: "0.1"
+
+manual:
+  underwriting_company: "Allstate Indemnity Company"
+  state: "Maryland"
+  product: "Voluntary Private Passenger Auto"
+  filing: "R59063"
+  amendment: "A2"
+  premium_calculation_page: "RP-2A"
+  effective_date: "2026-09-04"
+  review_status: "pilot_reviewed"
+
+factor_nodes:
+  - sequence: 1
+    factor_name: "Territorial Base Rate"
+    operation: "lookup_base"
+    rating_level: "vehicle_coverage"
+    inputs: ["garaging_territory", "coverage"]
+    source_pages: ["RP-BR"]
+    rule_reference: "Rule 9"
+    coverage_applicability: "coverage-specific"
+    review_status: "reviewed"
+
+  - sequence: 2
+    factor_name: "Rate Adjustment Factor"
+    operation: "multiply"
+    rating_level: "coverage"
+    inputs: ["coverage"]
+    source_pages: ["RP-2A"]
+    coverage_applicability: "coverage-specific"
+    review_status: "reviewed"
+
+  - sequence: 3
+    factor_name: "Increased Limit Factor or Addend"
+    operation: "coverage_dependent_multiply_or_add"
+    rating_level: "coverage"
+    inputs: ["coverage", "selected_limit"]
+    source_pages: ["RP-3A"]
+    rule_reference: "Rule 11"
+    coverage_applicability: "selected liability and PIP coverages"
+    review_status: "reviewed"
+
+  - sequence: 10
+    factor_name: "Policy Class Factor"
+    operation: "multiply"
+    rating_level: "policy_household"
+    inputs:
+      - "operator_gender_composition"
+      - "operator_marital_status_composition"
+      - "operator_age_composition"
+    source_pages: ["RP-7A", "RP-8A"]
+    rule_reference: "Rule 10"
+    aggregation: "table_1a * table_1b * geometric_average(table_1c)"
+    review_status: "reviewed"
+
+  - sequence: 34
+    factor_name: "Annual Vehicle Mileage Factor"
+    operation: "multiply"
+    rating_level: "vehicle"
+    inputs: ["annual_mileage", "coverage"]
+    source_pages: ["RP-16A"]
+    rule_reference: "Rule 64"
+    review_status: "reviewed"
+
+  - sequence: 47
+    factor_name: "Fixed Expense Premium"
+    operation: "add"
+    rating_level: "policy"
+    inputs: ["first_vehicle_with_bodily_injury", "package_eligibility"]
+    source_pages: ["RP-16A"]
+    rule_reference: "Rules 67 and 71"
+    review_status: "reviewed"
+
+  - sequence: 51
+    factor_name: "Total Semi-Annual Policy Premium"
+    operation: "sum"
+    rating_level: "policy"
+    dependencies:
+      - "vehicle_subtotals"
+      - "excess_medical_total"
+      - "miscellaneous_coverages_total"
+    source_pages: ["RP-2A"]
+    review_status: "reviewed"
+
+qa_fields:
+  - "source_filename"
+  - "source_page_number"
+  - "printed_page_identifier"
+  - "printed_effective_date"
+  - "extraction_method"
+  - "reviewer"
+  - "review_timestamp"
+  - "boundary_rows_checked"
+  - "unresolved_notes"
