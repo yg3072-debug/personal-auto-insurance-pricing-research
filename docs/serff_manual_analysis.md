@@ -2,7 +2,7 @@
 
 ## Corrected scope
 
-The manual work in this project concerns Maryland Allstate filings, not Progressive. The core research object is the rating logic disclosed in Private Passenger Auto rate and rule manuals. A separate motorcycle filing memorandum is used only as background for actuarial rate-level indication methods; it is not treated as a personal-auto tariff.
+The manual work in this project concerns Maryland filings from Allstate entities. The core research object is the rating logic disclosed in Private Passenger Auto rate and rule manuals. A separate motorcycle filing memorandum is used only as background for actuarial rate-level indication methods; it is not treated as a personal-auto tariff.
 
 The source PDFs are not redistributed in this repository. This document records the reviewed inventory, analytical protocol, source-page conventions, and limitations.
 
