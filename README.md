@@ -35,7 +35,7 @@ The data were split by renewal-date blocks rather than randomly. The final test 
 
 ## SERFF manual extension
 
-The current manual panel covers Maryland filings for **Allstate Indemnity Company** and **Allstate North American Insurance Company**, rather than Progressive:
+The current manual panel covers Maryland filings for **Allstate Indemnity Company** and **Allstate North American Insurance Company**:
 
 - Allstate Indemnity filing **R59063**: a 51-step RP-2A premium calculation effective September 4, 2026.
 - Allstate North American filings **R57301, R58046, R59113, and R60248**: rate and rule materials spanning 2024-2026, with a roughly 69-71-line architecture.
